@@ -7,23 +7,20 @@ import { ValuationPanel } from './components/ValuationPanel';
 import { VideoModal } from './components/VideoModal';
 import { DocumentModal } from './components/DocumentModal';
 import { useTimer } from './hooks/useTimer';
-import { InputField as InputFieldType, TeamRole, SimulationData } from './types';
+import { InputField as InputFieldType, TeamRole } from './types';
 import { Send } from 'lucide-react';
 
 function App() {
   const timer = useTimer();
   
-  // Team role configuration - Team 1 can modify values, Team 2 can toggle status
-  const teamRole: TeamRole = {
-    canModifyValues: true, // Team 1
-    canToggleStatus: false, // Team 2 only
-  };
+  // Current user role - change to 'team2' to simulate Team 2 permissions
+  const userRole: 'team1' | 'team2' = 'team1';
 
-  // Alternative team role for Team 2 testing
-  // const teamRole: TeamRole = {
-  //   canModifyValues: false, // Team 2 cannot modify
-  //   canToggleStatus: true,  // Team 2 can toggle
-  // };
+  // Map role permissions
+  const teamRole: TeamRole = {
+    canModifyValues: userRole === 'team1',
+    canToggleStatus: userRole === 'team2',
+  };
 
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showDocumentModal, setShowDocumentModal] = useState(false);
@@ -114,7 +111,9 @@ function App() {
   const factorScore = inputFields.find(f => f.id === 'factorScore')?.value as number || 1;
   
   const valuation = ebitda * multiple * factorScore;
-  const percentage = 20; // Mock percentage for pie chart
+
+  // Mock percentage calculation based on valuation
+  const percentage = Math.min(100, Math.max(0, Math.round(valuation / 1_000_000)));
 
   const handleSubmitProposal = () => {
     // Mock submission - in real app this would send data to server

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TrendingUp, DollarSign, PieChart } from 'lucide-react';
+import { TrendingUp, PieChart } from 'lucide-react';
 
 interface ValuationPanelProps {
   valuation: number;

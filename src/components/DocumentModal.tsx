@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from './Modal';
-import { FileText, Info, Users, Calculator, Clock, Shield } from 'lucide-react';
+import { Info, Users, Calculator, Clock, Shield } from 'lucide-react';
 
 interface DocumentModalProps {
   isOpen: boolean;
