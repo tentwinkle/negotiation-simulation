@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputField as InputFieldType, TeamRole } from '../types';
-import { Lock, Unlock } from 'lucide-react';
+import { Lock } from 'lucide-react';
 
 interface InputFieldProps {
   field: InputFieldType;
